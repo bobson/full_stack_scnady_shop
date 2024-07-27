@@ -1,19 +1,10 @@
 <?php
 
-// namespace App\Model\Product;
+namespace App\Model\Price;
 
-// require "../../Database/Databse.php";
+use App\Model\BaseModel;
 
-abstract class AbstractPrice
+abstract class AbstractPrice extends BaseModel
 {
     protected $table = 'prices';
-    protected $conn;
-
-    public function __construct()
-    {
-        $db = new Database();
-        $this->conn = $db;
-    }
-
-    abstract public function get();
 }

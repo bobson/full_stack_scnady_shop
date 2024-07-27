@@ -1,19 +1,10 @@
 <?php
 
-// namespace App\Model\Product;
+namespace App\Model\Gallery;
 
-// require "../../Database/Databse.php";
+use App\Model\BaseModel;
 
-abstract class AbstractGallery
+abstract class AbstractGallery extends BaseModel
 {
     protected $table = 'galleries';
-    protected $conn;
-
-    public function __construct()
-    {
-        $db = new Database();
-        $this->conn = $db;
-    }
-
-    abstract public function get();
 }

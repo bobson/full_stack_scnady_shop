@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Model;
+
+use App\Database\Database;
+
 abstract class BaseModel
 {
 
@@ -11,5 +15,5 @@ abstract class BaseModel
         $this->conn = $db;
     }
 
-    abstract public function get();
+    // abstract public function get();
 }

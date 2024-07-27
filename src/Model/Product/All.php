@@ -1,12 +1,15 @@
 <?php
 
-// namespace App\Model\Product;
+namespace App\Model\Product;
 
 class All extends AbstractProduct
 {
-    public function get()
+    private $products;
+    public function __construct()
     {
+        parent::__construct();
         $query = "SELECT * FROM " . $this->table;;
-        return $this->conn->query($query)->fetchAll();
+        $products =  $this->conn->query($query)->fetchAll();
+        $this->products = $products;
     }
 }

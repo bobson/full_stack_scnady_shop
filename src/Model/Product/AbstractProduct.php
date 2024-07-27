@@ -1,19 +1,20 @@
 <?php
 
-// namespace App\Model\Product;
+namespace App\Model\Product;
 
-// require "../../Database/Databse.php";
+use App\Model\BaseModel;
 
-abstract class AbstractProduct
+
+abstract class AbstractProduct extends BaseModel
 {
     protected $table = 'products';
-    protected $conn;
-
-    public function __construct()
+    protected $product;
+    protected function productDetails(product_id)
     {
-        $db = new Database();
-        $this->conn = $db;
+
+        return $this->product;
     }
 
-    abstract public function get();
+
+
 }

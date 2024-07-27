@@ -1,5 +1,6 @@
-
 <?php
+
+namespace App\GraphQL\Resolvers;
 
 require_once '../../src/Category.php';
 

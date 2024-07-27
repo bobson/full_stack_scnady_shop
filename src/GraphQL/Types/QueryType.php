@@ -1,8 +1,13 @@
-// src/graphql/Types/QueryType.php
 <?php
+
+namespace App\GraphQL\Types;
 
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ObjectType;
+
+use App\GraphQL\Resolvers\CategoryResolver;
+use App\GraphQL\Resolvers\ProductResolver;
+
 
 class QueryType extends ObjectType
 {

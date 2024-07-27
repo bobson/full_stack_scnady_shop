@@ -1,5 +1,8 @@
-
 <?php
+
+namespace App\GraphQL\Resolvers;
+
+use App\Model\Gallery\Gallery;
 
 class GalleryResolver
 {

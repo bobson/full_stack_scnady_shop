@@ -1,15 +1,15 @@
 <?php
-class Category
+
+namespace App\Model;
+
+use App\Model\BaseModel;
+
+class Category extends BaseModel
 {
     protected $table = 'categories';
     protected $conn;
 
-    public function __construct($db)
-    {
-        $this->conn = $db;
-    }
-
-    public function getAll()
+    public function get()
     {
         $query = "SELECT * FROM " . $this->table;
 

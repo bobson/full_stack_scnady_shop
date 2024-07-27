@@ -1,7 +1,11 @@
 <?php
 
+namespace App\GraphQL\Types;
+
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ObjectType;
+
+use App\GraphQL\Resolvers\AttributeResolver;
 
 class AttributeType extends ObjectType
 {

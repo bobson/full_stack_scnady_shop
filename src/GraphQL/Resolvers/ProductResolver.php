@@ -1,17 +1,11 @@
-
 <?php
 
+namespace App\GraphQL\Resolvers;
 
-
-// require_once '../../Model/Product/All.php';
-// require_once '../../Model/Product/Clotes.php';
-// require_once '../../Model/Product/Tech.php';
-// use App\Database\Database;
-
-// use App\Model\Product\AllProducts;
-// use App\Model\Product\ClothesProduct;
-// use App\Model\Product\TechProduct;
-
+use App\Model\Product\All;
+use App\Model\Product\One;
+use App\Model\Product\Clotes;
+use App\Model\Product\Tech;
 
 class ProductResolver
 {

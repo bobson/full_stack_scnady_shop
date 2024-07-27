@@ -1,16 +1,11 @@
 <?php
 
-abstract class AbstractAttribute
+namespace App\Model\Attribute;
+
+use App\Model\BaseModel;
+
+abstract class AbstractAttribute extends BaseModel
 {
     protected $table = 'attributes';
-    protected $conn;
     protected $items = 'attributes_items';
-
-    public function __construct()
-    {
-        $db = new Database();
-        $this->conn = $db;
-    }
-
-    abstract public function get();
 }

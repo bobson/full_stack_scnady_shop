@@ -1,6 +1,8 @@
-
 <?php
 
+namespace App\GraphQL\Resolvers;
+
+use App\Model\Price\Price;
 
 class PriceResolver
 {

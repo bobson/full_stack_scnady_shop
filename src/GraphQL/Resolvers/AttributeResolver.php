@@ -1,6 +1,9 @@
-
 <?php
 
+namespace App\GraphQL\Resolvers;
+
+use App\Model\Attribute\ByProduct;
+use App\Model\Attribute\Items;
 
 class AttributeResolver
 {

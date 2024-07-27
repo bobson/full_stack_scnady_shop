@@ -1,34 +1,17 @@
-// src/Order.php
 <?php
 
-require_once 'Database.php';
+namespace App\Model;
 
-class Order
+use App\Model\BaseModel;
+
+class Order extends BaseModel
 {
-    private $conn;
+    protected $table = 'orders';
 
-    public function __construct()
+    public function get()
     {
-        $this->conn = (new Database())->getConnection();
-    }
+        $query = "SELECT * FROM " . $this->table;
 
-    public function create($productId, $quantity, $totalPrice)
-    {
-        $query = 'INSERT INTO orders (product_id, quantity, total_price) VALUES (:product_id, :quantity, :total_price)';
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':product_id', $productId);
-        $stmt->bindParam(':quantity', $quantity);
-        $stmt->bindParam(':total_price', $totalPrice);
-        if ($stmt->execute()) {
-            return [
-                'id' => $this->conn->lastInsertId(),
-                'product_id' => $productId,
-                'quantity' => $quantity,
-                'total_price' => $totalPrice,
-                'order_date' => date('Y-m-d H:i:s')
-            ];
-        } else {
-            throw new Exception("Error creating order");
-        }
+        return $this->conn->query($query)->fetchAll();
     }
 }

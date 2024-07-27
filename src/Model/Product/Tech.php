@@ -1,6 +1,6 @@
 <?php
 
-// namespace App\Model\Product;
+namespace App\Model\Product;
 
 class Tech extends AbstractProduct
 {

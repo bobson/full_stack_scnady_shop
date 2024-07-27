@@ -1,8 +1,11 @@
 <?php
 
+namespace App\Model\Attribute;
+
 class Items extends AbstractAttribute
 {
     private $attribute_id;
+    public $attributes;
     public function __construct($attribute_id)
     {
         parent::__construct();

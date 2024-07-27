@@ -1,5 +1,7 @@
 <?php
 
+namespace App\GraphQL\Types;
+
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ObjectType;
 
@@ -8,7 +10,7 @@ class AttributeItemsTypes extends ObjectType
     public function __construct()
     {
         parent::__construct([
-            'name' => 'AttributeItems',
+            'name' => 'AttributeItem',
             'fields' => [
                 'id' => Type::int(),
                 'attribute_id' => Type::int(),

@@ -1,16 +1,18 @@
 <?php
 
+namespace App\Model\Attribute;
+
 class ByProduct extends AbstractAttribute
 {
-    private $product_id;
+    public $attributes;
     public function __construct($product_id)
     {
         parent::__construct();
-        $this->product_id = $product_id;
+        $query = "SELECT * FROM " . $this->table . " WHERE product_id = :product_id";
+        $this->attributes = $this->conn->query($query, ["product_id" => $product_id])->fetchAll();
     }
     public function get()
     {
-        $query = "SELECT * FROM " . $this->table . " WHERE product_id = :product_id";
-        return $this->conn->query($query, ["product_id" => $this->product_id])->fetchAll();
+        return $this->attributes;
     }
 }

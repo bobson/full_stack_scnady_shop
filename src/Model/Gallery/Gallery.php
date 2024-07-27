@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model\Gallery;
+
 class Gallery extends AbstractGallery
 {
     private $product_id;

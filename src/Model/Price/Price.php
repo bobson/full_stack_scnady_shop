@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model\Price;
+
 class Price extends AbstractPrice
 {
     private $product_id;

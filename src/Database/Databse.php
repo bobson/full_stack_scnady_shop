@@ -1,9 +1,9 @@
 <?php
 
-// namespace App\Database;
+namespace App\Database;
 
-// use PDO;
-// use PDOException;
+use PDO;
+use PDOException;
 
 class Database
 {
@@ -13,7 +13,7 @@ class Database
     public function __construct()
     {
         // $this->conn = null;
-        $config = require '../config/db_config.php';
+        $config = require 'config/db_config.php';
         $dsn = "mysql:" . http_build_query($config, '', ';');
         try {
 
