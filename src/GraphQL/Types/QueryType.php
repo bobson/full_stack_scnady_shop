@@ -31,7 +31,7 @@ class QueryType extends ObjectType
                 'product' => [
                     'type' => Type::listOf(new ProductType()),
                     'resolve' => function ($id) {
-                        return (new ProductResolver())->getOne($id);
+                        return (new ProductResolver())->getProduct($id);
                     }
                 ]
             ]

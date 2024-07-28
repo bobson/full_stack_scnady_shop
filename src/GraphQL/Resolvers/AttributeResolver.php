@@ -2,14 +2,14 @@
 
 namespace App\GraphQL\Resolvers;
 
-use App\Model\Attribute\ByProduct;
+use App\Model\Attribute\Attribute;
 use App\Model\Attribute\Items;
 
 class AttributeResolver
 {
-    public function getByProduct($productId)
+    public function getAttribute($productId)
     {
-        $attribute = new ByProduct($productId);
+        $attribute = new Attribute($productId);
         return $attribute->get();
     }
     public function getItems($attributeId)

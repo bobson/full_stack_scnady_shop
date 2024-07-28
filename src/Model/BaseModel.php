@@ -8,6 +8,7 @@ abstract class BaseModel
 {
 
     protected $conn;
+    protected $table;
 
     public function __construct()
     {
@@ -15,5 +16,5 @@ abstract class BaseModel
         $this->conn = $db;
     }
 
-    // abstract public function get();
+    abstract public function get();
 }

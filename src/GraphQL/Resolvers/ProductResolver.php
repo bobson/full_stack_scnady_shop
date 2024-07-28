@@ -2,23 +2,20 @@
 
 namespace App\GraphQL\Resolvers;
 
-use App\Model\Product\All;
-use App\Model\Product\One;
-use App\Model\Product\Clotes;
-use App\Model\Product\Tech;
+use App\Model\Product\Product;
 
 class ProductResolver
 {
     public function getAll($category)
     {
-        $class = ucfirst($category);
+        $class = 'App\Model\Product\\' . ucfirst($category);
         $products = new $class();
         return $products->get();
     }
 
-    public function getOne($id)
+    public function getProduct($id)
     {
-        $product = new One($id);
+        $product = new Product($id);
         return $product->get();
     }
 }

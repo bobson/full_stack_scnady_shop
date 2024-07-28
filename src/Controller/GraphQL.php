@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\GraphQL\Types\ProductType;
 use GraphQL\GraphQL as GraphQLBase;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
@@ -17,6 +18,7 @@ class GraphQL
     {
         try {
             $queryType = new QueryType();
+
 
             $mutationType = new ObjectType([
                 'name' => 'Mutation',

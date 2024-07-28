@@ -2,13 +2,13 @@
 
 
 
-require "functions.php";
-require __DIR__ . "/src/Database/Databse.php";
-require_once __DIR__ . '/vendor/autoload.php';
+require "../functions.php";
+require "../src/Database/Databse.php";
+require_once '../vendor/autoload.php';
 // require_once "vendor/autoload.php";
 // require '../src/Model/Product/AbstractProduct.php';
 // require '../src/Model/Attribute/AbstractAttribute.php';
-use App\Database\Database;
+// use App\Database\Database;
 // use App\Controller\GraphQL;
 
 // require '../src/Model/Product/Clotes.php';
@@ -21,6 +21,7 @@ use App\Database\Database;
 // require '../src/graphql/Resolvers/AttributeResolver.php';
 
 use App\GraphQL\Resolvers\ProductResolver;
+use App\GraphQL\Resolvers\AttributeResolver;
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->post('/graphql', [App\Controller\GraphQL::class, 'handle']);
@@ -34,7 +35,6 @@ $routeInfo = $dispatcher->dispatch(
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found
-        echo "404 Not Found";
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
@@ -49,10 +49,10 @@ switch ($routeInfo[0]) {
 
 // $db = new Database();
 $products = new ProductResolver();
-// $products = $products->getAll("clotes");
-$products = $products->getOne("apple-imac-2021");
+$products = $products->getAll("all");
+// $products = $products->getProduct("apple-imac-2021");
 // $attribute = new AttributeResolver();
-// $attributes = $attribute->getByProduct("apple-imac-2021");
+// $attributes = $attribute->getAttribute("apple-imac-2021");
 // dd($dispatcher);
 
 dd($products);

@@ -13,7 +13,9 @@ class Database
     public function __construct()
     {
         // $this->conn = null;
-        $config = require 'config/db_config.php';
+        $config = [
+            'host' => '127.0.0.1', "dbname" => "shop"
+        ];
         $dsn = "mysql:" . http_build_query($config, '', ';');
         try {
 
@@ -28,12 +30,11 @@ class Database
     }
 
     public function query($sql, $params = [])
-
     {
 
         $this->stmt = $this->conn->prepare($sql);
         $this->stmt->execute($params);
-        return $this;
+        return $this->stmt;
     }
 
     public function fetchAll()

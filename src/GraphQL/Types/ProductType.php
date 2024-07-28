@@ -19,28 +19,13 @@ class ProductType extends ObjectType
                 'id' => Type::string(),
                 'name' => Type::string(),
                 'in_stock' => Type::boolean(),
-                'galery' => [
-                    'type' => Type::listOf(new GalleryType()),
-                    'resolve' => function ($product_id) {
-                        return (new GalleryResolver())->getGallery($product_id);
-                    }
-                ],
+                'gallery' => Type::listOf(new GalleryType()),
                 'description' => Type::string(),
                 'category' => Type::string(),
-                'prices' => [
-                    'type' => Type::listOf(new PricesType()),
-                    'resolve' => function ($product_id) {
-                        return (new PriceResolver())->getPrice($product_id);
-                    }
-                ],
+                'prices' =>  Type::listOf(new PricesType()),
                 'brand' => Type::string(),
                 'gallery' => Type::string(),
-                'attributes' => [
-                    'type' => Type::listOf(new AttributeType()),
-                    'resolve' => function ($product_id) {
-                        return (new AttributeResolver())->getByProduct($product_id);
-                    }
-                ]
+                'attributes' =>  Type::listOf(new AttributeType()),
             ],
         ]);
     }
