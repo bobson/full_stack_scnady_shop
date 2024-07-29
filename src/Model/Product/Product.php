@@ -13,6 +13,7 @@ class Product extends AbstractProduct
     }
     public function get()
     {
-        return $this->getProductDetails();
+        // dd($this->getProductDetails());
+        return $this->getProductDetails()[0];
     }
 }

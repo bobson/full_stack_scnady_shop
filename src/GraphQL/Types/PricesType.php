@@ -10,11 +10,11 @@ class PricesType extends ObjectType
     public function __construct()
     {
         parent::__construct([
-            'name' => 'Attribute',
+            'name' => 'Prices',
             'fields' => [
                 'id' => Type::int(),
                 'product_id' => Type::string(),
-                'amount' => Type::int(),
+                'amount' => Type::float(),
                 'currency_label' => Type::string(),
                 'currency_symbol' => Type::string(),
             ]

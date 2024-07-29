@@ -14,24 +14,31 @@ class QueryType extends ObjectType
     public function __construct()
     {
         parent::__construct([
+
             'name' => 'Query',
             'fields' => [
                 'categories' => [
                     'type' => Type::listOf(new CategoryType()),
-                    'resolve' => function () {
+                    'resolve' => function ($root, $args) {
                         return (new CategoryResolver())->getAll();
                     }
                 ],
                 'products' => [
                     'type' => Type::listOf(new ProductType()),
-                    'resolve' => function ($category) {
-                        return (new ProductResolver())->getAll($category);
+                    'args' => [
+                        'category' => Type::string(),
+                    ],
+                    'resolve' => function ($root, $args) {
+                        return (new ProductResolver())->getAll($args['category']);
                     }
                 ],
                 'product' => [
-                    'type' => Type::listOf(new ProductType()),
-                    'resolve' => function ($id) {
-                        return (new ProductResolver())->getProduct($id);
+                    'type' => new ProductType(),
+                    'args' => [
+                        'id' => ['type' => Type::string()],
+                    ],
+                    'resolve' => function ($root, $args) {
+                        return (new ProductResolver())->getProduct($args['id']);
                     }
                 ]
             ]

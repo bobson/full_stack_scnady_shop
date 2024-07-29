@@ -11,23 +11,26 @@ abstract class AbstractProduct extends BaseModel
 {
     protected $table = 'products';
     protected $products;
-    protected $attributes;
+    protected $finalProduct;
 
     public function getProductDetails()
     {
         foreach ($this->products as $product) {
             $attributes = new Attribute($product['id']);
             $attributes = $attributes->get();
+
             $prices = new Price($product['id']);
             $prices = $prices->get();
             $gallery = new Gallery($product['id']);
             $gallery = $gallery->get();
-            $product['attributes'] = $attributes;
+            $product['attributes'] = $attributes ? $attributes : [];
             $product['prices'] = $prices;
             $product['gallery'] = $gallery;
-            $this->attributes[] = $product;
+            // dd($product['attributes']);
+            $this->finalProduct[] = $product;
         }
-
-        return $this->attributes;
+        dd("here");
+        dd($this->finalProduct);
+        return $this->finalProduct;
     }
 };

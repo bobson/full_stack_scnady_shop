@@ -22,7 +22,7 @@ class ProductType extends ObjectType
                 'gallery' => Type::listOf(new GalleryType()),
                 'description' => Type::string(),
                 'category' => Type::string(),
-                'prices' =>  Type::listOf(new PricesType()),
+                'prices' =>  new PricesType(),
                 'brand' => Type::string(),
                 'gallery' => Type::string(),
                 'attributes' =>  Type::listOf(new AttributeType()),

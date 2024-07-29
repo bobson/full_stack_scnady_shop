@@ -7,5 +7,5 @@ use App\Model\BaseModel;
 abstract class AbstractAttribute extends BaseModel
 {
     protected $table = 'attributes';
-    protected $items = 'attributes_items';
+    protected $itemsTable = 'attribute_items';
 }
