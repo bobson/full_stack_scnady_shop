@@ -28,7 +28,7 @@ class QueryType extends ObjectType
                     'args' => [
                         'category' => Type::string(),
                     ],
-                    'resolve' => function ($root, $args) {
+                    'resolve' => function ($__root, $args) {
                         return (new ProductResolver())->getAll($args['category']);
                     }
                 ],
@@ -37,7 +37,7 @@ class QueryType extends ObjectType
                     'args' => [
                         'id' => ['type' => Type::string()],
                     ],
-                    'resolve' => function ($root, $args) {
+                    'resolve' => function ($__root, $args) {
                         return (new ProductResolver())->getProduct($args['id']);
                     }
                 ]

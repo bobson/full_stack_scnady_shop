@@ -2,17 +2,20 @@
 
 namespace App\Model\Price;
 
-class Price extends AbstractPrice
+use App\Model\BaseModel;
+
+class Price extends BaseModel
 {
-    private $product_id;
+    protected $table = 'prices';
+    private $price;
     public function __construct($product_id)
     {
         parent::__construct();
-        $this->product_id = $product_id;
+        $query = "SELECT * FROM " . $this->table . " WHERE product_id = :product_id";
+        $this->price =  $this->conn->query($query, ["product_id" => $product_id])->fetch();
     }
     public function get()
     {
-        $query = "SELECT * FROM " . $this->table . " WHERE product_id = :product_id";
-        return $this->conn->query($query, ["product_id" => $this->product_id])->fetch();
+        return $this->price;
     }
 }

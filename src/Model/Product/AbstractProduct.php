@@ -10,27 +10,22 @@ use App\Model\Gallery\Gallery;
 abstract class AbstractProduct extends BaseModel
 {
     protected $table = 'products';
+    // Setting the products property to protected so that 
+    // it can be accessed by the child classes
     protected $products;
-    protected $finalProduct;
 
-    public function getProductDetails()
+    public function getProductDetails($product)
     {
-        foreach ($this->products as $product) {
-            $attributes = new Attribute($product['id']);
-            $attributes = $attributes->get();
+        $attributes = new Attribute($product['id']);
+        $attributes = $attributes->get();
+        $product['attributes'] = $attributes ? $attributes : [];
+        $prices = new Price($product['id']);
+        $prices = $prices->get();
+        $product['prices'] = $prices;
+        $gallery = new Gallery($product['id']);
+        $gallery = $gallery->get();
+        $product['gallery'] = $gallery;
 
-            $prices = new Price($product['id']);
-            $prices = $prices->get();
-            $gallery = new Gallery($product['id']);
-            $gallery = $gallery->get();
-            $product['attributes'] = $attributes ? $attributes : [];
-            $product['prices'] = $prices;
-            $product['gallery'] = $gallery;
-            // dd($product['attributes']);
-            $this->finalProduct[] = $product;
-        }
-        dd("here");
-        dd($this->finalProduct);
-        return $this->finalProduct;
+        return $product;
     }
 };

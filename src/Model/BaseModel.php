@@ -6,7 +6,6 @@ use App\Database\Database;
 
 abstract class BaseModel
 {
-
     protected $conn;
     protected $table;
 
@@ -15,6 +14,6 @@ abstract class BaseModel
         $db = new Database();
         $this->conn = $db;
     }
-
+    // Forsing the child classes to implement the get method
     abstract public function get();
 }
