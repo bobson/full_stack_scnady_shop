@@ -14,6 +14,4 @@ abstract class BaseModel
         $db = new Database();
         $this->conn = $db;
     }
-    // Forsing the child classes to implement the get method
-    abstract public function get();
 }

@@ -13,8 +13,9 @@ class GalleryType extends ObjectType
             'name' => 'Gallery',
             'fields' => [
                 'id' => Type::int(),
-                'product_id' => Type::string(),
-                'image_url' => Type::string(),
+                'product_id' => Type::nonNull(Type::string()),
+                'url' => Type::string(),
+                // 'urls' => Type::listOf(Type::string())
             ]
         ]);
     }

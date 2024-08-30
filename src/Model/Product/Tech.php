@@ -4,20 +4,14 @@ namespace App\Model\Product;
 
 class Tech extends AbstractProduct
 {
-    private $techProducts;
-    public function __construct()
+    protected function getCategory()
     {
-        parent::__construct();
-        $query = "SELECT * FROM " . $this->table . " WHERE category = 'tech'";
-        // Fetch tech products and store them in the parent class property
-        $this->products =  $this->conn->query($query)->fetchAll();
+        return 'tech';
     }
 
-    public function get()
+    public function fetchAllProducts()
     {
-        foreach ($this->products as $product) {
-            $this->techProducts[] = $this->getProductDetails($product);
-        }
-        return $this->techProducts;
+        $data = $this->fetchProductData();
+        return $this->processProducts($data);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\GraphQL\Types;
 
+use App\GraphQL\Resolvers\OrderResolver;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ObjectType;
-
-use App\GraphQL\Resolvers\OrderResolver;
+use App\GraphQL\Types\OrderItemType;
 
 class MutationType extends ObjectType
 {
@@ -15,16 +15,20 @@ class MutationType extends ObjectType
             'name' => 'Mutation',
             'fields' => [
                 'createOrder' => [
-                    'type' => new OrderType(),
+                    'type' => Type::string(),
                     'args' => [
-                        'product_id' => Type::nonNull(Type::int()),
-                        'quantity' => Type::nonNull(Type::int()),
-                        'total_price' => Type::nonNull(Type::float())
+                        'total_price' => Type::nonNull(Type::float()),
+                        'total_items' => Type::nonNull(Type::int()),
+                        'items_data' => Type::listOf(new OrderItemType())
                     ],
                     'resolve' => function ($root, $args) {
-                        return (new OrderResolver())->createOrder($args);
+                        return (new OrderResolver)->createOrder(
+                            $args['total_price'],
+                            $args['total_items'],
+                            $args['items_data']
+                        );
                     }
-                ]
+                ],
             ]
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Types;
 
+use App\Model\Order;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ObjectType;
 
@@ -11,13 +12,17 @@ class OrderType extends ObjectType
     {
         parent::__construct([
             'name' => 'Order',
-            'fields' => [
-                'id' => Type::int(),
-                'product_id' => Type::int(),
-                'quantity' => Type::int(),
-                'total_price' => Type::float(),
-                'order_date' => Type::string(),
-            ]
+            'fields' => function () {
+                return [
+                    'id' => Type::nonNull(Type::int()),
+                    'order_id' => Type::nonNull(Type::string()),
+                    'product_name' => Type::nonNull(Type::string()),
+                    'product_price' => Type::nonNull(Type::float()),
+                    'selected_attributes' => Type::string(),
+                    'quantity' => Type::int(),
+                    'created_at' => Type::string(),
+                ];
+            },
         ]);
     }
 }

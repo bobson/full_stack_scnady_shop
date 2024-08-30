@@ -6,17 +6,17 @@ use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ObjectType;
 
 
-class ProductType extends ObjectType
+class ProductsType extends ObjectType
 {
     public function __construct()
     {
         parent::__construct([
-            'name' => 'Product',
+            'name' => 'Products',
             'fields' => [
                 'id' => Type::string(),
                 'name' => Type::string(),
                 'inStock' => Type::boolean(),
-                'gallery' => Type::listOf(Type::string()),
+                'gallery' => new GalleryType(),
                 'description' => Type::string(),
                 'category' => Type::string(),
                 'prices' =>  new PricesType(),

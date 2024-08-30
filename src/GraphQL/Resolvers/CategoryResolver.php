@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Resolvers;
 
-require_once '../../src/Category.php';
+use App\Model\Category\Category;
 
 
 class CategoryResolver
@@ -11,5 +11,7 @@ class CategoryResolver
 
     public function getAll()
     {
+        $category = new Category();
+        return $category->set();
     }
 }

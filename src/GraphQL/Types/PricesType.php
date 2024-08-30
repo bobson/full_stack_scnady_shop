@@ -13,7 +13,7 @@ class PricesType extends ObjectType
             'name' => 'Prices',
             'fields' => [
                 'id' => Type::int(),
-                'product_id' => Type::string(),
+                'product_id' => Type::nonNull(Type::string()),
                 'amount' => Type::float(),
                 'currency_label' => Type::string(),
                 'currency_symbol' => Type::string(),

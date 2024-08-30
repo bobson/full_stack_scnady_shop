@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\Category;
 
 use App\Model\BaseModel;
 
@@ -9,7 +9,7 @@ class Category extends BaseModel
     protected $table = 'categories';
     protected $conn;
 
-    public function get()
+    public function set()
     {
         $query = "SELECT * FROM " . $this->table;
 

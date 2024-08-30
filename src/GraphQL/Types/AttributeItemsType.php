@@ -13,7 +13,7 @@ class AttributeItemsType extends ObjectType
             'name' => 'AttributeItem',
             'fields' => [
                 'id' => Type::int(),
-                'attribute_id' => Type::int(),
+                'attribute_id' => Type::nonNull(Type::int()),
                 'display_value' => Type::string(),
                 'value' => Type::string(),
             ]

@@ -4,20 +4,14 @@ namespace App\Model\Product;
 
 class All extends AbstractProduct
 {
-    private $allProducts;
-    public function __construct()
+    protected function getCategory()
     {
-        parent::__construct();
-        $query = "SELECT * FROM " . $this->table;
-        // Fetch all products and store them in the parent class property
-        $this->products =  $this->conn->query($query)->fetchAll();
+        return "";
     }
 
-    public function get()
+    public function fetchAllProducts()
     {
-        foreach ($this->products as $product) {
-            $this->allProducts[] = $this->getProductDetails($product);
-        }
-        return $this->allProducts;
+        $data = $this->fetchProductData();
+        return $this->processProducts($data);
     }
 }

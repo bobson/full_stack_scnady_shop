@@ -6,16 +6,17 @@ use App\Model\Product\Product;
 
 class ProductResolver
 {
-    public function getAll($category)
+    public function getProductsByCategory($category)
     {
+        // Require the model dinamicly based on the category
         $class = 'App\Model\Product\\' . ucfirst($category);
         $products = new $class();
-        return $products->get();
+        return $products->fetchAllProducts();
     }
 
-    public function getProduct($id)
+    public function getProductById($id)
     {
-        $product = new Product($id);
-        return $product->get();
+        $product = new Product();
+        return $product->fetchProductById($id);
     }
 }

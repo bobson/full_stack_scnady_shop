@@ -18,7 +18,7 @@ class AttributeType extends ObjectType
                 'product_id' => Type::string(),
                 'name' => Type::string(),
                 'type' => Type::string(),
-                'items' => Type::listOf(new AttributeItemsType()),
+                'items' => Type::nonNull(Type::listOf(new AttributeItemsType())),
             ]
         ]);
     }

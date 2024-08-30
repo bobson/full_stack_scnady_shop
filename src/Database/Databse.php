@@ -14,12 +14,17 @@ class Database
     {
         // $this->conn = null;
         $config = [
-            'host' => '127.0.0.1', "dbname" => "shop"
+            'host' => 'scandi_backend-db-1',
+            "dbname" => "scandi_shop",
         ];
         $dsn = "mysql:" . http_build_query($config, '', ';');
         try {
 
-            $this->conn = new PDO($dsn, 'root', '', [
+            $this->conn = new PDO($dsn, 'root', 'root', [
+                // Dont force the result to be strings
+                PDO::ATTR_STRINGIFY_FETCHES => false,
+                // Dont emulate prepared statements
+                PDO::ATTR_EMULATE_PREPARES => false,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
@@ -42,6 +47,11 @@ class Database
         return $this->stmt->fetchAll();
     }
 
+    public function fetchColumn()
+    {
+        return $this->stmt->fetchAll();
+    }
+
     public function fetch()
     {
         return $this->stmt->fetch();
@@ -50,5 +60,28 @@ class Database
     public function rowCount()
     {
         return $this->stmt->rowCount();
+    }
+
+    public function lastInsertId()
+    {
+        return $this->conn->lastInsertId();
+    }
+
+    // Begin a transaction
+    public function beginTransaction()
+    {
+        $this->conn->beginTransaction();
+    }
+
+    // Commit the transaction
+    public function commit()
+    {
+        $this->conn->commit();
+    }
+
+    // Roll back the transaction
+    public function rollBack()
+    {
+        $this->conn->rollBack();
     }
 }

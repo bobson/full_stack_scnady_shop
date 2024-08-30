@@ -5,40 +5,44 @@ namespace App\GraphQL\Types;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ObjectType;
 
+// use App\GraphQL\Types\ProductsType;
 use App\GraphQL\Resolvers\CategoryResolver;
 use App\GraphQL\Resolvers\ProductResolver;
+use App\GraphQL\Resolvers\ProductsResolver;
 
 
 class QueryType extends ObjectType
 {
+    private $productType;
     public function __construct()
     {
+        $this->productType = new ProductType();
         parent::__construct([
 
             'name' => 'Query',
             'fields' => [
                 'categories' => [
                     'type' => Type::listOf(new CategoryType()),
-                    'resolve' => function ($root, $args) {
+                    'resolve' => function () {
                         return (new CategoryResolver())->getAll();
                     }
                 ],
                 'products' => [
-                    'type' => Type::listOf(new ProductType()),
+                    'type' => Type::listOf($this->productType),
                     'args' => [
-                        'category' => Type::string(),
+                        'category' => Type::nonNull(Type::string()),
                     ],
-                    'resolve' => function ($__root, $args) {
-                        return (new ProductResolver())->getAll($args['category']);
+                    'resolve' => function ($_root, $args) {
+                        return (new ProductResolver)->getProductsByCategory($args['category']);
                     }
                 ],
                 'product' => [
-                    'type' => new ProductType(),
+                    'type' => $this->productType,
                     'args' => [
-                        'id' => ['type' => Type::string()],
+                        'id' =>  Type::string(),
                     ],
-                    'resolve' => function ($__root, $args) {
-                        return (new ProductResolver())->getProduct($args['id']);
+                    'resolve' => function ($root, $args) {
+                        return (new ProductResolver)->getProductById($args['id']);
                     }
                 ]
             ]

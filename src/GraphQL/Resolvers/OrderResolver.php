@@ -2,13 +2,30 @@
 
 namespace App\GraphQL\Resolvers;
 
-use App\Model\Order;
+use App\Model\Order\Order;
 
 class OrderResolver
 {
-    public function createOrder($args)
+
+    public function getAllOrders()
     {
         $order = new Order();
-        // return $order->create($args['product_id'], $args['quantity'], $args['total_price']);
+        return $order->getAllOrders();
+    }
+
+
+    public function getOrderById($id)
+    {
+        $order = new Order();
+        return $order->getOrderById($id);
+    }
+
+
+    public function createOrder($totalPrice, $totalItems, $itemsData)
+    {
+        $order = new Order();
+        $order_id = $order->insertOrder($totalPrice, $totalItems, $itemsData);
+
+        return $order_id;
     }
 }

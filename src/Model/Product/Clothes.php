@@ -1,24 +1,17 @@
 <?php
 
 namespace App\Model\Product;
-// require "Product.php";
 
 class Clothes extends AbstractProduct
 {
-    private $clothesProducts;
-    public function __construct()
+    protected function getCategory()
     {
-        parent::__construct();
-        $query = "SELECT * FROM " . $this->table . " WHERE category = 'clothes'";
-        // Fetch clothes products and store them in the parent class property
-        $this->products =  $this->conn->query($query)->fetchAll();
+        return 'clothes';
     }
 
-    public function get()
+    public function fetchAllProducts()
     {
-        foreach ($this->products as $product) {
-            $this->clothesProducts[] = $this->getProductDetails($product);
-        }
-        return $this->clothesProducts;
+        $data = $this->fetchProductData();
+        return $this->processProducts($data);
     }
 }
